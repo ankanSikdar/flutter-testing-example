@@ -1,28 +1,30 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:testing_app/models/favorites.dart';
+import 'package:testing_app/screens/favorites.dart';
+import 'package:testing_app/screens/home.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(TestingApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
-
+class TestingApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: HomePage(),
-    );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: const Text('Home Page'),
+    return ChangeNotifierProvider<Favorites>(
+      create: (context) => Favorites(),
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Testing Sample',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        routes: {
+          HomePage.routeName: (context) => HomePage(),
+          FavoritesPage.routeName: (context) => FavoritesPage(),
+        },
+        initialRoute: HomePage.routeName,
       ),
     );
   }
