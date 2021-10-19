@@ -19,7 +19,7 @@ dev_dependencies:
     sdk: flutter
   integration_test:
     sdk: flutter # new
-  test: ^1.14.4
+  test: any
   flutter_lints: ^1.0.0
 
 flutter:
